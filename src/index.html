@@ -1,0 +1,175 @@
+<!doctype>
+<html>
+  <head>
+
+    <meta charset="utf-8">
+    <title>Will it rain today?</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!--
+
+      LOAD THE FULL BOOTSTRAP CSS
+
+    -->
+
+    <link href="/assets/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/styles.css" rel="stylesheet">
+
+    <!--
+
+      SOME HEAVY, UNNECESSARY JAVASCRIPT LIBRARIES
+
+    -->
+
+    <script src="/assets/js.cookie.js"></script>
+    <script src="/assets/jquery-3.3.1.min.js"></script>
+
+    <!--
+
+      OUR SCRIPT
+
+    -->
+
+    <script>
+
+      // Get your free API key from https://openweathermap.org/appid#get
+      window.API_KEY = 'paste-your-key-here';
+
+    </script>
+
+    <script src="/assets/main.js"></script>
+
+  </head>
+  <body>
+
+    <!--
+
+      SCREEN: NO SCRIPT
+
+    -->
+
+    <noscript>
+      <section id="no-script" class="viewport viewport--active d-flex justify-content-center align-items-center">
+
+        JavaScript required
+
+      </section>
+    </noscript>
+
+    <!--
+
+      SCREEN: LOADING
+
+    -->
+
+    <section id="screen-loading" class="viewport viewport--active d-flex justify-content-center align-items-center">
+      <div class="loading panel d-flex justify-content-center align-items-center">
+        <div>Loading...</div>
+      </div>
+    </section>
+
+    <!--
+
+      SCREEN: GET LOCATION
+
+    -->
+
+    <section id="screen-get-location" class="viewport d-flex justify-content-center align-items-center">
+      <div>
+        <h1>Will it rain today?</h1>
+        <button type="button" class="btn btn-primary" id="btn-fixed-location" style="display: none">Check in London</button>
+        <button type="button" class="btn btn-primary" id="btn-get-location">Get my location</button>
+        <small class="mt-3 d-none" id="note-loading-location">Loading your location...</small>
+      </div>
+    </section>
+
+    <!--
+
+      SCREEN: RESULT
+
+    -->
+
+    <section id="screen-result" class="viewport d-flex justify-content-center align-items-center">
+
+      <div class="viewport__container">
+
+        <div class="panel panel--result">
+          <h1>Will it rain today<br>in <span id="result-name"></span>?</h1>
+          <h2 class="result-h2" id="result-yes">Yes!</h2>
+          <h2 class="result-h2" id="result-no">No!</h2>
+          <div id="result-amount"></div>
+          <div id="result-start"></div>
+        </div>
+
+        <div class="stale" id="stale" style="display: none;">
+          <p>You are seeing an out-of-date forecast.</p>
+          <button type="button" class="btn btn-primary btn-sm" id="btn-stale-refresh" disabled>Refresh forecast</button>
+          <div class="mt-3" id="stale-connection">
+            <div class="stale__offline">No network connection</div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!--
+
+      SCREEN: CREDITS
+
+    -->
+
+    <section id="screen-credits" class="viewport viewport--credits d-flex justify-content-center align-items-center">
+
+      <div class="viewport__container">
+          <h3>Credits</h3>
+
+          <p>Built by <a href="https://danielcrisp.com">Daniel Crisp</a></p>
+
+          <p>Weather data supplied by <a href="https://openweathermap.org/">OpenWeatherMap</a></p>
+
+          <p>Rain photo by <a href="https://unsplash.com/photos/1YHXFeOYpN0?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Max Bender</a> on <a href="https://unsplash.com?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
+
+          <p>Clouds photo by <a href="https://unsplash.com/photos/E9aetBe2w40?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Sam Schooler</a> on <a href="https://unsplash.com?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
+
+          <h4>By the way...</h4>
+
+          <p>This webapp was built to accompany a <code>ServiceWorker</code> tutorial. As such it includes some unnecessarily large files (e.g. jQuery, images) to demonstrate the performance benefits of caching.</p>
+
+          <p>Also the logic behind the weather calculation is not particularly sophisticated and should not be relied upon. Don't blame me if you get wet!</p>
+
+      </div>
+
+      <div class="viewport__close">
+        <button type="button" class="close" aria-label="Close" id="btn-credits-close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+    </section>
+
+    <!--
+
+      GLOBAL
+
+    -->
+
+    <div class="panel panel--change-location" id="panel-change-location">
+      <button type="button" class="btn btn-sm btn-link" id="btn-change-location">Change location</button>
+    </div>
+
+    <div class="panel panel--credits-link">
+      <button type="button" class="btn btn-sm btn-link" id="btn-credits">Credits</button>
+    </div>
+
+    <!-- Images inline so gulp-rev can pick them up -->
+    <div style="background-image: url(/assets/sam-schooler-4824-unsplash.jpg)" class="bg bg--no-rain"></div>
+    <div style="background-image: url(/assets/max-bender-510413-unsplash.jpg" class="bg bg--rain"></div>
+
+  </body>
+</html>

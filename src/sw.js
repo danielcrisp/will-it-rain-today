@@ -35,6 +35,22 @@ self.addEventListener('fetch', (event) => {
   if (event.request.url.endsWith('index.html')) {
     return;
   }
-  console.log(event);
+
+  // Tell the fetch to respond with this Promise chain
+  event.respondWith(
+    // Open the cache
+    caches.open(assetsCacheName)
+      .then((cache) => {
+        // Make the request to the network
+        return fetch(event.request)
+          .then((response) => {
+            // Cache the response
+            cache.put(event.request, response.clone());
+
+            // Return the original response to the page
+            return response;
+          });
+      })
+  );
 
 });

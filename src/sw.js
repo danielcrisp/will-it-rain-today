@@ -1,3 +1,5 @@
+const assetsCacheName = 'v1-assets';
+
 self.addEventListener('install', (event) => {
   console.log(event);
   self.skipWaiting();

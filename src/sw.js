@@ -36,19 +36,30 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Tell the fetch to respond with this Promise chain
+  // Tell the fetch to respond with this chain
   event.respondWith(
     // Open the cache
     caches.open(assetsCacheName)
       .then((cache) => {
-        // Make the request to the network
-        return fetch(event.request)
-          .then((response) => {
-            // Cache the response
-            cache.put(event.request, response.clone());
 
-            // Return the original response to the page
-            return response;
+        // Look for matching request in the cache
+        return cache.match(event.request)
+          .then((matched) => {
+
+            // If a match is found return the cached version first
+            if (matched) {
+              return matched;
+            }
+
+            // Otherwise continue to the network
+            return fetch(event.request)
+              .then((response) => {
+                // Cache the response
+                cache.put(event.request, response.clone());
+
+                // Return the original response to the page
+                return response;
+              });
           });
       })
   );

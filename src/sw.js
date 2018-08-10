@@ -1,5 +1,6 @@
 self.addEventListener('install', (event) => {
   console.log(event);
+  self.skipWaiting();
 });
 
 self.addEventListener('activate', (event) => {

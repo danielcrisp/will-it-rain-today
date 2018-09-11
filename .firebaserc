@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "will-it-rain-today-c287a"
+    "default": "will-it-rain-today-c287a",
+    "part2": "will-it-rain-today-2",
+    "part1": "will-it-rain-today-c287a"
   }
 }

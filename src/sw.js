@@ -1,4 +1,5 @@
 const assetsCacheName = 'v1-assets';
+const dynamicCacheName = 'v1-dynamic';
 
 self.addEventListener('install', (event) => {
   console.log(event);

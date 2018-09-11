@@ -4,7 +4,7 @@
 
 Demo web app to demonstrate how to use Service Worker.
 
-https://will-it-rain-today-c287a.firebaseapp.com/
+Part 1 demo: https://will-it-rain-today-c287a.firebaseapp.com/
 
 > This repo accompanies a two-part tutorial written for *net magazine*
 
@@ -34,6 +34,8 @@ If you missed part 1 you'll need to sign up for a free API key at
 https://openweathermap.org/ in order to access the weather data API.
 
 Paste your API key into the index.html at the highlighted place, approx line 40.
+
+Part 2 demo: https://will-it-rain-today-2.firebaseapp.com/
 
 ## Install
 

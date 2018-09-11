@@ -392,7 +392,16 @@
 
     // Reload the data
     $btnStale.on('click', () => {
-      // Cache deletion logic goes here
+      caches.open('v1-dynamic').then((cache) => {
+        // Get the API url
+        const url = getUrl(latLng);
+
+        // Delete the cache
+        cache.delete(url).then(() => {
+          // Re-fetch the result
+          fetchResult();
+        });
+      });
     });
 
     const networkOnline = () => {

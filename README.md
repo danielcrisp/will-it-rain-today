@@ -24,6 +24,8 @@ The `master` branch contains the starting point.
 The `tutorial` branch contains the completed tutorial. With each step flagged
 with a *tag*. See below for more info.
 
+If you're looking for part 2 you need the `tutorial-2` branch.
+
 ## Install
 
     npm install

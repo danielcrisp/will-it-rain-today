@@ -9,6 +9,12 @@ self.addEventListener('activate', (event) => {
   console.log(event);
 });
 
+/**
+ *
+ * ASSETS CACHING
+ *
+ */
+
 self.addEventListener('fetch', (event) => {
 
   // Ignore crossdomain requests
@@ -63,5 +69,46 @@ self.addEventListener('fetch', (event) => {
           });
       })
   );
+
+});
+
+/**
+ *
+ * DYNAMIC CACHING
+ *
+ */
+
+self.addEventListener('fetch', (event) => {
+
+  // Ignore non-GET requests
+  if (event.request.method !== 'GET') {
+    return;
+  }
+
+  // Ignore browser-sync
+  if (event.request.url.indexOf('browser-sync') > -1) {
+    return;
+  }
+
+  let allow = false;
+
+  // Allow index route to be cached
+  if (event.request.url === (self.location.origin + '/')) {
+    allow = true;
+  }
+
+  // Allow index.html to be cached
+  if (event.request.url.endsWith('index.html')) {
+    allow = true;
+  }
+
+  // Allow API requests to be cached
+  if (event.request.url.startsWith('https://api.openweathermap.org')) {
+    allow = true;
+  }
+
+  if (allow) {
+    // Dynamic caching logic go here...
+  }
 
 });

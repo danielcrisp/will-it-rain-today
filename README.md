@@ -24,6 +24,17 @@ The `master` branch contains the starting point.
 The `tutorial` branch contains the completed tutorial. With each step flagged
 with a *tag*. See below for more info.
 
+## Part 2
+
+If you're looking for part 2 you need the `tutorial-2` branch.
+
+### Note - API key required
+
+If you missed part 1 you'll need to sign up for a free API key at
+https://openweathermap.org/ in order to access the weather data API.
+
+Paste your API key into the index.html at the highlighted place, approx line 40.
+
 ## Install
 
     npm install

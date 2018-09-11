@@ -122,7 +122,12 @@ self.addEventListener('fetch', (event) => {
 
             // Return the original response
             return response;
+          })
+          .catch(() => {
+            // On failure look for a match in the cache
+            return caches.match(event.request);
           });
+
       })
     );
 

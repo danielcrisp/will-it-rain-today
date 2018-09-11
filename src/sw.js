@@ -109,7 +109,23 @@ self.addEventListener('fetch', (event) => {
   }
 
   if (allow) {
-    // Dynamic caching logic go here...
+
+    // Network first
+    event.respondWith(
+      // Open the dynamic cache
+      caches.open(dynamicCacheName).then((cache) => {
+        // Make the request to the network
+        return fetch(event.request)
+          .then((response) => {
+            // Cache the response
+            cache.put(event.request, response.clone());
+
+            // Return the original response
+            return response;
+          });
+      })
+    );
+
   }
 
 });

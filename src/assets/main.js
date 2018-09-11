@@ -181,6 +181,20 @@
           // Ensure we actually have relevant data points
           if (inDateItems.length) {
 
+            // Define a threshold amount. This is one day in milliseconds
+            const staleThreshold = 24 * 60 * 60 * 1000;
+
+            // Check difference between first data point and now
+            const dateDiff = Date.now() - inDateItems[0]._date;
+
+            // Does the date exceed the threshold?
+            const dataIsStale = dateDiff > staleThreshold;
+
+            // Show the message if data is stale
+            if (dataIsStale) {
+              showStale();
+            }
+
             // Filter items that only have rain
             const rainItems = inDateItems
               .filter(() => {

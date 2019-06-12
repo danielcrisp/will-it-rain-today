@@ -20,6 +20,7 @@
     "gulp-rev": "^8.1.1",
     "gulp-rev-css-url": "^0.1.0",
     "gulp-rev-delete-original": "^0.2.3",
-    "gulp-rev-rewrite": "^1.1.1"
+    "gulp-rev-rewrite": "^1.1.1",
+    "natives": "^1.1.6"
   }
 }

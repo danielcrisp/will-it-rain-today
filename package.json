@@ -13,7 +13,7 @@
   "private": true,
   "license": "ISC",
   "devDependencies": {
-    "browser-sync": "^2.24.6",
+    "browser-sync": "^2.27.10",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-filter": "^5.1.0",
